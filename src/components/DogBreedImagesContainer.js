@@ -3,10 +3,11 @@ import DogsBreedImages from './DogsBreedImages'
 import request from 'superagent'
 
 export default class DogBreedImagesContainer extends Component {
-  state = { images: null }
+  state = { images: null, params: null }
 
   componentDidMount() {
     const breed = this.props.match.params.breed
+    
     request
       .get(`https://dog.ceo/api/breed/${encodeURIComponent(breed)}/images`)
       .then(response => this.updateImages(response.body.message))
@@ -20,6 +21,8 @@ export default class DogBreedImagesContainer extends Component {
   }
 
   render() {
-    return <DogsBreedImages images={ this.state.images } />
+    return (<DogsBreedImages images={ this.state.images } />,
+      <DogsBreedImages match={ this.props.match} />
+    )
   }
 }
