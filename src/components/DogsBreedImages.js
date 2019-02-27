@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function DogBreedImages (props) {
   const images = props.images;
-  
+  console.log(props)
   return (
     
     <div className="dog-breed-images">
@@ -14,7 +14,7 @@ export default function DogBreedImages (props) {
 
       <Link to="/">Go back to the index</Link>
       <div>
-        { images && images.map(url => <img src={ url } alt="Dog" />) }
+        { images && images.map(url => <img key={url} src={ url } alt="Dog" />) }
         { !images && 'Loading...' }
       </div>
     </div>
